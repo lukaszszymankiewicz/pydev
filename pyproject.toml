@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pv"
+version = "0.1.0"
+description = "Python 3.14 project"
+readme = "README.md"
+requires-python = ">=3.14"
+license = { text = "MIT" }
+authors = [{ name = "Lukasz Szymankiewicz" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.17.6",
+    "pytest==9.2.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pv"]
+
+# --- Ruff: linter + formatter --------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade (modernize syntax for target-version)
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "RUF", # ruff-specific rules
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["pv"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+# --- Pytest ---------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "9.0"
+addopts = "-ra -q --strict-markers"
+testpaths = ["tests"]

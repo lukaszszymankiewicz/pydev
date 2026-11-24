@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Auto lint & format Python files on save",
+      "trigger": "PostFileSave",
+      "description": "Automatically runs `ruff check --fix` and `ruff format` on every saved .py file so agents never have to lint themselves.",
+      "matcher": "\\.py$",
+      "action": {
+        "type": "command",
+        "command": "sh .kiro/hooks/scripts/auto_lint.sh \"{{filePath}}\"",
+        "timeout": 15
+      }
+    }
+  ]
+}

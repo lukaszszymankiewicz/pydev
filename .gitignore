@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# venv (created via `make venv` / `python3.14 -m venv .venv`)
+.venv/
+
+# test / lint caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# editors / OS
+.DS_Store
+.idea/
+.vscode/

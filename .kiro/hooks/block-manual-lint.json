@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Block manual ruff invocation",
+      "trigger": "PreToolUse",
+      "description": "Prevents agents from running `ruff` directly in shell; forces use of make targets so linting/formatting stays consistent and automated.",
+      "matcher": "execute_bash",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/block_manual_lint.py",
+        "timeout": 10
+      }
+    }
+  ]
+}
